@@ -1,0 +1,346 @@
+// {
+//    var a = "abc";
+//    let a = "xyz";
+//     console.log(a);
+// }
+// console.log(a);
+
+
+// var a = "abc"
+// {
+//   console.log(a);
+//    let a = "abc";
+// }
+
+// var obj = {
+//     a: function() {
+//         console.log(this);
+//         var b = function() {
+//             console.log(this);
+//         }
+//         b();
+//     }
+// }
+
+// obj.a();
+
+// var obj = {
+//     a: function() {
+//         console.log(this);
+//         var b = () => {
+//             console.log(this);
+//         }
+//         b();
+//     }
+// }
+
+// obj.a();
+
+// var fun = function () {
+//    this.name = "abc"
+// };
+// var hello = new fun();
+// console.log(hello);
+
+// var fun = function () {
+//    console.log(fun);
+//    return {name: 'abc'}
+// };
+// var hello = new fun();
+// console.log(hello);
+
+
+// (function () {
+//   var x;
+//   console.log(typeof x); //function
+//   function x() {
+//     console.log(x);
+//   }
+//   var x = 10;
+//   console.log(x); // 10
+// })();
+
+
+// (function (x) {
+//   var x = 10;
+//   return function (y) {
+//     var y;
+//     console.log(x+y);
+//     return x + y;
+//   };
+// })(100)(10);
+
+// var arr = new Array(5).fill({});
+// arr[0].name = "John Appleseed";
+// console.log(arr); 
+
+
+// var arr = [{}, {}, {}];
+// arr.map((item, i) => { item.index = i});
+// console.log(arr);
+
+
+// console.log(1);
+// setTimeout(() => console.log(2))
+// var p = new Promise(res => {console.log(3);
+// res();
+// })
+// .then(() => {
+// console.log(4)
+// });
+// console.log(5);
+
+// const promise = new Promise(res => res(2));
+// promise.then(v => {
+// console.log(v);   // 2
+// return v * 2;
+// })
+// .then(v => {
+// console.log(v);   //4
+// return v * 2;
+// })
+// .finally(v => {
+// console.log(v); // undefined
+// return v * 2;  // NAN
+// })
+// .then(v => {
+// console.log(v); // 8
+// });
+
+
+// function getAge() {
+//     'use strict';
+//     age = 21;
+//     console.log(age);
+//   }
+  
+//   getAge();
+// const num = parseInt('7*6', 10);
+// Me
+// To
+// Everyone
+// 4:16:48 PM
+// KC
+// NAN
+// Pravesh
+// To
+// Everyone
+// 4:17:24 PM
+
+// const person = { name: 'Lydia' };
+
+// function sayHi(age) {
+//   return `${this.name} is ${age}`;
+// }
+
+// console.log(sayHi.call(person, 21));
+// console.log(sayHi.bind(person, 21));
+// Me
+// To
+// Everyone
+// 4:18:05 PM
+// KC
+// Linda is 21
+// Linda is 21
+// Pravesh
+// To
+// Everyone
+// 4:19:01 PM
+
+// function addToList(item, list) {
+//   return list.push(item);
+// }
+
+// const result = addToList('apple', ['banana']);
+// console.log(result);
+
+// let x = 'outer value';
+// (function() {
+//   console.log(x);
+//   let x = 'inner value';
+// }());
+
+// const counter = function (initialValue, stepVal) {
+//     var c = initialValue || 0;
+//     return function next() {
+//        c = c + stepVal;
+//        return c;
+//     };
+//   }
+  
+//   const c1 = counter(1,1);
+  
+//   console.log(c1(), c1());
+
+// const counter = function (initialVal, stepVal) {
+//     return {
+//         val: initialVal,
+//         next() {
+//             this.val = this.val + stepVal;
+//             return this.val
+//         }
+//     }
+// }
+// const c = counter(0, 2);
+// console.log(c.val, c.next(), c.val)
+
+
+// var obj = {
+//     val: 0,
+//     inc() {
+//         this.val++;
+//         console.log(this.val);
+//     }
+// };
+// var inc = obj.inc;
+// inc();
+// inc.call(obj);
+// obj.inc();
+// var obj2 = {val: 2};
+// var inc2 = inc.bind(obj2);
+// inc2();
+
+// function A() {
+
+// };
+// function B(val) {
+//     this.valB = val;
+// }
+// B.prototype = Object.create(A.prototype);
+// var b = new B(2);
+// console.log(b.valB);
+// console.log(b.val);
+// A.prototype.val = 1;
+// console.log(b.val);
+
+// const a = [1,2,3];
+// const [one, ...rem] = a;
+// const [first, , , fourth] = a;
+// console.log(one === 1, rem.every((i, j) => i == j+2), first === 1, fourth === 2);
+
+// const a = {
+//     one: '1.0',
+//     two: '2.0',
+//     three: '3.0'
+// };
+// const {one, ...rem} = a;
+// const all = {...a};
+// console.log(one ==='1.0', rem === undefined, rem.three === '3.0', all.one === a.one);
+
+
+// console.log(true+false);
+
+// [,,,].length;
+
+// [1,2,3] + [4,5,6];
+
+// 10,2;
+
+// !!"";
+
+// +!!"";
+
+// !!!true;
+
+// true == "true";
+
+// 010 - 03;
+
+// "" - - "";
+
+// null + 0;
+
+// 0/0;
+
+// true++;
+
+// "" - 1;
+
+// (null - 0) + "0";
+
+// true + ("true" - 0);
+
+// !5 + !5;
+
+// undefined + false;
+
+// "" && -0 ;
+
+
+
+// function foo(value) {
+//     console.log(value)
+//   }
+  
+//   function throttle(funcName, delay, maxCounter) {
+//     let count = maxCounter;
+//       return (a) => {
+//         funcName(a);
+//       }
+
+//   }
+  
+  
+//   const customThrottle = throttle(foo, 2000, 3)
+  
+  
+//   customThrottle(1);
+//   customThrottle(2);
+//   customThrottle(3);
+//   customThrottle(4);
+//   customThrottle(5);
+//   customThrottle(6);
+//   customThrottle(7);
+//   customThrottle(8);
+  
+//   setTimeout(() => {
+  
+//     customThrottle(9)
+//     customThrottle(10)
+//     customThrottle(11)
+//     customThrottle(12)
+  
+//   }, 3000)
+
+// const obj = {
+//     a: {
+//       b: {
+//         c: {
+//           name: "Ankit"
+//         }
+//       }
+//     },
+//     b: {
+//       candidate: {
+//         name: "Khushboo"
+//       }
+//     }
+//   }
+
+  /*
+  {
+    "a.b.c.name": "Ankit"
+    "b.candidate.name": "Khushboo"
+  }
+*/
+  
+
+// const flatten = (obj) => {
+//     let ans = {};
+//     // let str = "";
+
+//     for(let [key, value] of Object.entries(obj)){
+//         if(typeof(value) === "object" ){
+//             const result = flatten(value);
+//             for(let [key2, value2] of Object.entries(result)){
+//                 ans[`${key}.${key2}`] = value2;
+//             }
+//         } else {
+//             // console.log(key + ">>>>>" + value);
+//             ans[key] = value;
+//         }
+//     }
+//     return ans;
+// }
+
+// console.log(flatten(obj));
