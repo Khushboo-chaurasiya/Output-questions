@@ -1,0 +1,670 @@
+// class Node {
+//   constructor(val) {
+//     this.value = val;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+
+// class BinarySearchTree {
+//   constructor() {
+//     this.root = null;
+//   }
+
+//   insert(val) {
+//     let newNode = new Node(val);
+//     let current = this.root;
+//     if (this.root === null) {
+//       this.root = newNode;
+//       return this;
+//     }
+
+//     while (true) {
+//       if (val === current.value) return undefined;
+
+//       if (val < current.value) {
+//         if (current.left === null) {
+//           current.left = newNode;
+//           return this;
+//         }
+//         current = current.left;
+//       } else {
+//         if (current.right === null) {
+//           current.right = newNode;
+//           return this;
+//         }
+//         current = current.right;
+//       }
+//     }
+//   }
+
+//   search(val) {
+//       if(this.root === undefined) return false;
+//       let current = this.root;
+//       while(true){
+//           if(val === current.value) return true;
+//           if(val < current.value){
+//               if(!current.left) return false;
+//               current = current.left;
+//           } else {
+//             if(!current.right) return false;
+//             current = current.right;
+//           }
+//       }
+//   }
+
+//   InOrder(){
+//       let arr = [];
+//       let node = this.root;
+//       function traverse(node){
+//         arr.push(node.value);
+//         if(node.left) traverse(node.left);
+//         if(node.right) traverse(node.right);
+//       }
+//       traverse(node);
+//       return arr;
+//   }
+
+//   BFS(){
+//       let arr = [];
+//       let queue = [];
+//       queue.push(this.root);
+//       while(queue.length){
+//           let popItem = queue.shift();
+//           arr.push(popItem.value);
+//           if(popItem.left) queue.push(popItem.left);
+//           if(popItem.right) queue.push(popItem.right);
+//       }
+//       return arr;
+//   }
+// }
+
+// const binaryTree = new BinarySearchTree();
+// binaryTree.insert(8);
+// binaryTree.insert(3);
+// binaryTree.insert(10);
+// binaryTree.insert(1);
+// binaryTree.insert(6);
+// binaryTree.insert(14);
+// binaryTree.insert(4);
+// binaryTree.insert(7);
+// binaryTree.insert(13);
+// console.log(binaryTree.BFS());
+
+// class BinaryHeap {
+//   constructor() {
+//     this.values = [];
+//   }
+
+//   bubbleUp() {
+//     let index = this.values.length - 1;
+//     let indexNode = this.values[index];
+
+//     while (index > 0) {
+//       let parent = Math.floor((index - 1) / 2);
+//       let parentNode = this.values[parent];
+
+//       if (parentNode > indexNode) break;
+//       [this.values[index], this.values[parent]] = [
+//         this.values[parent],
+//         this.values[index],
+//       ];
+//       index = parent;
+//     }
+//   }
+
+//   insert(val) {
+//     this.values.push(val);
+//     this.bubbleUp();
+//   }
+
+//   sinkDown() {
+//     let index = 0;
+//     let indexNode = this.values[index];
+
+//     let left = 2 * index + 1;
+//     let right = 2 * index + 2;
+
+//     let length = this.values.length;
+
+//     let leftChild, rightChild, swap;
+//     if (left < length) leftChild = this.values[left];
+//     if (right < length) rightChild = this.values[right];
+
+//     if (leftChild && leftChild > indexNode) swap = left;
+//     if (rightChild && rightChild > indexNode && rightChild > leftChild) {
+//       swap = right;
+//     }
+
+//     if (swap) {
+//       [this.values[index], this.values[swap]] = [
+//         this.values[swap],
+//         this.values[index],
+//       ];
+//       index = swap;
+//     }
+//   }
+
+//   extractMax() {
+//     [this.values[0], this.values[this.values.length - 1]] = [
+//       this.values[this.values.length - 1],
+//       this.values[0],
+//     ];
+//     this.values.pop();
+//     this.sinkDown();
+//   }
+// }
+
+// class Node {
+//   constructor(val, priority) {
+//     this.value = val;
+//     this.priority = priority;
+//   }
+// }
+
+// class PriorityQueue {
+//   constructor() {
+//     this.values = [];
+//   }
+
+//   bubbleUp() {
+//     let index = this.values.length - 1;
+//     let indexNode = this.values[index];
+
+//     while (index > 0) {
+//       let parent = Math.floor(index - 1 / 2);
+//       let parentNode = this.values[parent];
+
+//       if (indexNode.priority >= parentNode.priority) break;
+//       [this.values[index], this.values[parent]] = [
+//         this.values[parent],
+//         this.values[index],
+//       ];
+//       index = parent;
+//     }
+//   }
+
+//   sinkDown() {
+//     let idx = 0;
+//     const length = this.values.length;
+//     const element = this.values[0];
+//     while(true){
+//         let leftChildIdx = 2 * idx + 1;
+//         let rightChildIdx = 2 * idx + 2;
+//         let leftChild,rightChild;
+//         let swap = null;
+
+//         if(leftChildIdx < length){
+//             leftChild = this.values[leftChildIdx];
+//             if(leftChild.priority < element.priority) {
+//                 swap = leftChildIdx;
+//             }
+//         }
+//         if(rightChildIdx < length){
+//             rightChild = this.values[rightChildIdx];
+//             if(
+//                 (swap === null && rightChild.priority < element.priority) || 
+//                 (swap !== null && rightChild.priority < leftChild.priority)
+//             ) {
+//                 swap = rightChildIdx;
+//             }
+//         }
+//         if(swap === null) break;
+//         this.values[idx] = this.values[swap];
+//         this.values[swap] = element;
+//         idx = swap;
+//     }
+    // let index = 0;
+    // let length = this.values.length;
+    // let indexNode = this.values[index];
+
+    // while (true) {
+      
+    //   let left = (2 * index) + 1;
+    //   let right = (2 * index) + 2;
+
+    //   let leftChild, rightChild;
+    //   let swap = null;
+    //   if (left < length) leftChild = this.values[left];
+    //   if (right < length) rightChild = this.values[right];
+
+    //   if (leftChild?.priority && leftChild.priority < indexNode.priority)
+    //     swap = left;
+    //   if (
+    //     rightChild?.priority &&
+    //     rightChild.priority < leftChild.priority &&
+    //     rightChild.priority < indexNode.priority
+    //   ) {
+    //     swap = right;
+    //   }
+
+    //   // console.log("SWAP : "+ swap +" II "+index);
+
+    //   if (swap !== null) {
+    //     console.log("SWAP : "+ swap +" II "+index);
+    //     [this.values[index], this.values[swap]] = [
+    //       this.values[swap],
+    //       this.values[index],
+    //     ];
+    //     index = swap;
+    //   } else {
+    //     break;
+    //   }
+
+    //   console.log("SWAP2222 : "+ swap +" II222 "+index);
+//   }
+
+//   enqueue(val, priority) {
+//     let newNode = new Node(val, priority);
+//     this.values.push(newNode);
+//     this.bubbleUp();
+//   }
+
+//   dequeue() {
+//     console.log("VVVVVV: " + JSON.stringify(this.values));
+//     [this.values[0], this.values[this.values.length - 1]] = [
+//       this.values[this.values.length - 1],
+//       this.values[0],
+//     ];
+//     console.log("PPP: " + JSON.stringify(this.values));
+//     this.values.pop();
+//     this.sinkDown();
+//   }
+// }
+
+// let ER = new PriorityQueue();
+// ER.enqueue("Cold", 5);
+// ER.enqueue("Gunshot wound", 1);
+// ER.enqueue("High Fever", 4);
+// ER.enqueue("Broken arm", 2);
+// ER.enqueue("Glass in foot", 3);
+
+// ER.dequeue();
+
+// console.log(ER.values);
+
+// const binaryHeap = new BinaryHeap();
+// binaryHeap.insert(100);
+// binaryHeap.insert(19);
+// binaryHeap.insert(36);
+// binaryHeap.insert(17);
+// binaryHeap.insert(3);
+// binaryHeap.insert(25);
+// binaryHeap.insert(1);
+// binaryHeap.insert(2);
+// binaryHeap.insert(7);
+// binaryHeap.extractMax();
+// console.log(binaryHeap.values);
+
+// class Graph {
+//   constructor() {
+//     this.adjacencyList = {};
+//   }
+
+//   addVertex(val) {
+//     if (!this.adjacencyList[val]) this.adjacencyList[val] = [];
+//   }
+
+//   addEdges(v1, v2) {
+//     this.adjacencyList[v1].push(v2);
+//     this.adjacencyList[v2].push(v1);
+//   }
+
+//   removeEdges(v1, v2) {
+//     this.adjacencyList[v1] = this.adjacencyList[v1].filter((v) => v2 !== v);
+//     this.adjacencyList[v2] = this.adjacencyList[v2].filter((v) => v1 !== v);
+//   }
+
+//   removeVertex(vertex) {
+//     while(this.adjacencyList[vertex].length){
+//       let popItem = this.adjacencyList[vertex].pop();
+//       this.removeEdges(popItem, vertex);
+//     }
+//     delete this.adjacencyList[vertex];
+//   }
+
+//   depthFirstTraversal(start){
+//     let result = [];
+//     let queue = [start];
+//     let visited = {};
+//     let current = start;
+
+//     while(queue.length){
+//       let pop = queue.shift();
+//       result.push(pop);
+//     }
+//   }
+// }
+
+// const graph = new Graph();
+// graph.addVertex("A");
+// graph.addVertex("B");
+// graph.addVertex("C");
+// graph.addVertex("D");
+// graph.addVertex("E");
+// graph.addVertex("F");
+// graph.addEdges("A", "B");
+// graph.addEdges("A", "C");
+// graph.addEdges("A", "D");
+// graph.addEdges("C", "E");
+// graph.addEdges("D", "F");
+// graph.removeEdges("A", "B");
+// graph.removeVertex("B");
+// console.log(graph.adjacencyList);
+
+// function intersection (...arr){
+//     // write your code here
+//     let obj = {};
+//     let result = [];
+//     for(let val of arr[0]){
+//         obj[val] = true;
+//     }
+
+//     for(let key of Object.keys(obj)){
+//         let flag = true;
+//         for(let data of arr){
+//             let status = data.includes(+key);
+//             if(!status){
+//                 flag = false;
+//                 break;
+//             }
+//         }
+//         if(flag) result.push(+key);
+//     }
+
+//     return result;
+// }
+
+// console.log(intersection([1,2,3], [101,2,1,10], [2,1], [2,3]));
+
+// String.prototype.myConcatFunction = function (x) {
+//     return x+this;
+//   }
+
+//   console.log("xyz".myConcatFunction("abc"));
+
+// function meanGroups(a) {
+//   let obj = {};
+//   let ans = [];
+//   for(let i=0; i<a.length; i++){
+//     let sum = a[i].reduce((previousValue, currentValue) => previousValue + currentValue);
+//     let temp = sum/a[i].length;
+//     if(obj[temp]){
+//       obj[temp] = [...obj[temp], i];
+//     } else {
+//       obj[temp] = [i];
+//     }
+//   }
+
+//   for(let [key, value] of Object.entries(obj)){
+//     ans.push(value);
+//   }
+
+//   ans.sort(([a, b], [c, d]) => a - c || d - b);
+
+//   return ans;
+// }
+
+// console.log(
+//   meanGroups([
+//     [3, 3, 4, 2],
+//     [4, 4],
+//     [4, 0, 3, 3],
+//     [2, 3],
+//     [3, 3, 3],
+//   ])
+// );
+
+// Array.prototype.myMap = function(item){
+//   let ans = [];
+//   for(let val of this){
+//     ans.push(item(val));
+//   }
+//   return ans;
+// }
+
+// let arr = [1,2,3,4];
+
+// console.log(arr.myMap(item => item * 3));
+
+// let obj1 = {
+//   a: {
+//     a1: {
+//       a2: {
+//         a5: {
+//           a8: 32,
+//         },
+//         a6: 6,
+//       },
+//       a3: {
+//         a4: 6,
+//       },
+//     },
+//   },
+//   b: { b1: 5 },
+// };
+// let level = "";
+// let max = "";
+// const flatObj = (obj) => {
+//   for (let [key, value] of Object.entries(obj)) {
+//     if (typeof value === "object") {
+//       level += " "+key;
+//       flatObj(value);
+//     } else {
+//       level += " "+key;
+//       if(level.length>max.length){
+//         max = level;
+//       }
+//       level = "";
+//     }
+//   }
+//   return max;
+// };
+
+// console.log(flatObj(obj1));
+
+// const input = ['1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1',  '1','0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1',	'1', '1', '1',	'1', '1', '1', '1'];
+
+// const longestSequence = (arr) => {
+//   let ans = [];
+//   let maxStr = ""+arr[0];
+//   let currentStr = ""+arr[0];
+//   let currentChar = ""+arr[0];
+//   for(let i=1; i<arr.length; i++){
+//     if(arr[i] == currentChar){
+//       currentStr += arr[i];
+//     } else {
+//       if(currentStr.length > maxStr.length){
+//         maxStr = currentStr;
+//       }
+//       ans.push(currentStr);
+//       currentStr = ""+arr[i];
+//       currentChar = ""+arr[i];
+//     }
+//   }
+//   return maxStr;
+// }
+
+// console.log(longestSequence(input));
+
+// const sumContigous = (arr) => {
+//   let maxSum = arr[0];
+//   let maxTillHere = arr[0];
+
+//   for(let i=1; i<arr.length; i++){
+//     maxTillHere = maxTillHere + arr[i];
+//     console.log(arr[i]+ " *** "+maxTillHere);
+//     if(maxTillHere > maxSum){
+//       // console.log(maxTillHere);
+//       maxSum = maxTillHere;
+//     }
+
+//     if(maxTillHere < 0){
+//       maxTillHere = 0;
+//     }
+//   }
+//   return maxSum;
+// }
+// let arr = [1,2,3,-2,5];
+// console.log("ANS : " + sumContigous(arr));
+
+// let obj1 = {
+//   a: {
+//     a1: {
+//       a2: {
+//         a5: {
+//           a8: 32,
+//         },
+//         a6: 6,
+//       },
+//       a3: {
+//         a4: 6,
+//       },
+//     },
+//   },
+//   b: { b1: 5 },
+// };
+
+// let level = {};
+
+// const flattenObj = (obj) => {
+//   for(let [key, value] of Object.entries(obj)){
+//     if(typeof(value) === "object"){
+//       flattenObj(value);
+//     } else {
+//       level[key] = value;
+//     }
+//   }
+//   return level;
+// }
+
+// console.log(flattenObj(obj1));
+
+let givenArr = [1, 2, 3, 4, 5];
+// let newArr = givenArr.map((elem) => elem+2);
+
+Array.prototype.customMap = function (proFunc) {
+  let newArr = [];
+  for (let index = 0; index < this.length; index++) {
+    const curElem = proFunc(this[index], index);
+    // console.log(index);
+    newArr.push(curElem);
+  }
+
+  return newArr;
+};
+
+console.log(givenArr.customMap((elem) => elem * 2));
+
+// var x = 3;
+// Var y = "3";
+// x - y
+// x+y
+// Let vs var
+// var variable1 = 23;
+
+// let variable2 = 89;
+
+// function catchValues(){
+//   console.log(window.variable1);
+//   console.log(window.variable2);
+// }
+
+// catchValues();
+// 1 2 3 4 5 6
+// Promice.Then(func).then(fun2).then(funct3)
+// Let obj ={name: ‘tes’}
+// obj[‘name’]
+// obj.name
+// obj= {}
+// obj[‘name’]
+// obj.name
+// 24, 4, 64, 12,
+// https://playcode.io/empty/
+
+
+// div.1.2.3#4#5 {color: red}
+// div.1.2#3#4#5 {color: yellow}
+// div.1.2.3#4#5 {color: red}
+// div.1.2#3#4#5 {color: yellow}
+// div.1.2.3#4#5 {color: red !important}
+// Brujat U4:19 PM
+// {
+//    var a = "abc";
+//    let a = "abc";
+//     console.log(a);
+// }
+// console.log(a);
+// Brujat U4:23 PM
+// var a = "abc"
+// {
+//   console.log(a);
+//    let a = "abc";
+// }
+// Brujat U4:24 PM
+// ====================================
+// var obj = {
+//     a: function() {
+//         console.log(this);
+//         var b = function() {
+//             console.log(this);
+//         }
+//         b();
+//     }
+// }
+
+// obj.a();
+// Brujat U4:27 PM
+// ====================================
+// var obj = {
+//     a: function() {
+//         console.log(this);
+//         var b = () => {
+//             console.log(this);
+//         }
+//         b();
+//     }
+// }
+
+// obj.a();
+// Brujat U4:34 PM
+// ==================================
+// var fun = function () {
+//    this.name = "abc"
+// };
+// var hello = new fun();
+// console.log(hello);
+// Brujat U4:36 PM
+// ====================================
+// var fun = function () {
+//    console.log("fun");
+//    return {name: 'abc'}
+// };
+// var hello = new fun();
+// console.log(hello);
+// Brujat U4:40 PM
+// =====================================
+// // once(); true
+// // once(); false
+// // once(); false
+// Brujat U4:44 PM
+// ====================================
+// var calc = new Operator(1, 2);
+// calc.add().multiply().sub();
+// Brujat U4:53 PM
+// [1,2,3,4]
+// Brujat U4:54 PM
+// {
+// a:  {
+// name: "abc"
+// }
+// }
+// Brujat U5:00 PM
+// ====================================
+// parent
+//    - pname
+//    - cash
+// child 
+//    - name
+//    - pname
+//    - cash
